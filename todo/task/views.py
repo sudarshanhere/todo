@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import task 
-from django.http import HttpResponseaForbidden
+from django.http import HttpResponseForbidden
 
 # Create your views here.
 def home(request):
