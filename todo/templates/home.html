@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,23 +7,23 @@
     <title>My Todo App</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
 
-</style>
-<meta name="google-site-verification" content="NXAnDznsMaQ-C9hze1efwmMY0m4QgcsG9TVpU_z9Q5Q" />
-<meta name="description" content="my toadshjpaoisj g;alkjdfg opa;kdsfg l;a l;kasdjf ;al" />
+    <meta name="google-site-verification" content="NXAnDznsMaQ-C9hze1efwmMY0m4QgcsG9TVpU_z9Q5Q" />
+    <meta name="description" content="My Todo App helps users create, manage, update and delete their daily tasks.">
+
 </head>
 
 <body class="bg-light">
 
 <div class="container mt-5">
 
-    <h2 class="text-center mb-4">My Todo List</h2>
+    <!-- Main Heading -->
+    <h1 class="text-center mb-4">My Todo List</h1>
 
     <!-- Add Task -->
     <div class="card shadow-sm p-4 mb-4">
 
-        <h5>Add New Task</h5>
+        <h2 class="h5">Add New Task</h2>
 
         <form method="POST">
             {% csrf_token %}
@@ -38,6 +39,7 @@
             <div class="form-check mb-3">
                 <input type="checkbox" name="completed"
                        class="form-check-input" id="completed">
+
                 <label for="completed" class="form-check-label">
                     Completed
                 </label>
@@ -51,73 +53,75 @@
     </div>
 
     <!-- Display Tasks -->
-<div class="card shadow-sm p-4">
+    <div class="card shadow-sm p-4">
 
-    <h5 class="mb-3">All Tasks</h5>
+        <h2 class="h5 mb-3">All Tasks</h2>
 
-    <div class="table-responsive">
+        <div class="table-responsive">
 
-        <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover">
 
-            <thead class="table-dark">
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
 
-            <tbody>
+                <tbody>
 
-                {% for task in tasks %}
+                    {% for task in tasks %}
 
-                <tr>
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
 
-                    <td>{{ task.title }}</td>
+                        <td>
+                            {% if task.completed %}
+                                <span class="badge bg-success">
+                                    Completed
+                                </span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">
+                                    Pending
+                                </span>
+                            {% endif %}
+                        </td>
 
-                    <td>{{ task.description }}</td>
+                        <td>
+                            <a href="{% url 'update' task.id %}"
+                               class="btn btn-warning btn-sm">
+                                Update
+                            </a>
 
-                    <td>
-                        {% if task.completed %}
-                            <span class="badge bg-success">
-                                Completed
-                            </span>
-                        {% else %}
-                            <span class="badge bg-warning text-dark">
-                                Pending
-                            </span>
-                        {% endif %}
-                    </td>
+                            <a href="{% url 'delete' task.id %}"
+                               class="btn btn-danger btn-sm">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
 
-                    <td>
-                        <a href="{% url 'update' task.id %}"
-                           class="btn btn-warning btn-sm">
-                            Update
-                        </a>
+                    {% empty %}
 
-                        <a href="{% url 'delete' task.id %}"
-                           class="btn btn-danger btn-sm">
-                            Delete
-                        </a>
-                    </td>
-                </tr>
+                    <tr>
+                        <td colspan="4" class="text-center text-muted">
+                            No tasks available.
+                        </td>
+                    </tr>
 
-                {% empty %}
+                    {% endfor %}
 
-                <tr>
-                    <td colspan="5" class="text-center text-muted">
-                        No tasks available.
-                    </td>
-                </tr>
+                </tbody>
 
-                {% endfor %}
+            </table>
 
-            </tbody>
-
-        </table>
+        </div>
 
     </div>
 
 </div>
-```
+
+</body>
+</html>
