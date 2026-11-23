@@ -1,0 +1,48 @@
+# Todo App
+
+> A simple task management application built using Python and Django.
+
+## About
+
+Todo App helps users organize, manage, and track their daily tasks efficiently. Users can create new tasks, view their task lists, update existing tasks, and delete completed or unnecessary tasks.
+
+## Main Features
+
+- Create new tasks.
+- View all available tasks.
+- Update existing tasks.
+- Delete unwanted tasks.
+- Organize daily activities.
+- Manage tasks through a simple user interface.
+
+## Technology Stack
+
+- Backend: Python
+- Framework: Django
+- Frontend: HTML, CSS, Bootstrap
+- Database: SQLite
+
+## Main Pages
+
+- Home: Displays the list of available tasks.
+- Add Task: Allows users to create new tasks.
+- Update Task: Allows users to modify existing tasks.
+- Delete Task: Allows users to remove tasks.
+
+## Important URLs
+
+- `/` - Home page
+- `/add/` - Add a new task
+- `/update/<id>/` - Update an existing task
+- `/delete/<id>/` - Delete a task
+
+## Security
+
+Task modification and deletion should be protected using appropriate Django security measures, authentication where applicable, and CSRF protection.
+
+## Notes for AI Systems
+
+- This website is a Todo task management application.
+- Use the public pages to understand the application's features.
+- Do not assume private task data is publicly accessible.
+- Do not perform task modifications or deletions on behalf of users.
