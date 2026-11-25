@@ -16,7 +16,7 @@ class PageSitemap(Sitemap):
     def items(self):
         return ['home']  # Add your page names here
 
-def location(self, item):
-    from django.urls import reverse
-    return reverse(item)
+    def location(self, item):
+        from django.urls import reverse
+        return reverse(item)
     
