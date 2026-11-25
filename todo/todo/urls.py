@@ -10,10 +10,11 @@ from django.urls import path
 from django.urls import include
 from django.contrib.sitemaps.views import sitemap
 
-from task.sitemaps import TaskSitemap
+from task.sitemaps import TaskSitemap, PageSitemap
 
 sitemaps = {
     'tasks': TaskSitemap,
+    'pages': PageSitemap,
 }
 
 urlpatterns = [
