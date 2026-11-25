@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import task 
+from .models import Task 
 from django.http import HttpResponseForbidden
 
 # Create your views here.
@@ -9,14 +9,14 @@ def home(request):
         description = request.POST.get('description')
         completed = request.POST.get('completed') == 'on'
 
-        task.objects.create(title=title, description=description, completed=completed)
+        Task.objects.create(title=title, description=description, completed=completed)
 
         return redirect('home')
         
-    return render(request, 'home.html', {'tasks': task.objects.all()})
+    return render(request, 'home.html', {'tasks': Task.objects.all()})
 
 def update(request, task_id):
-    task_obj = get_object_or_404(task, id=task_id)
+    task_obj = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':
         task_obj.title = request.POST.get('title')
         task_obj.description = request.POST.get('description')
@@ -28,7 +28,7 @@ def update(request, task_id):
     return render(request, 'update.html', {'task': task_obj})
 
 def delete(request, task_id):
-    task_obj = get_object_or_404(task, id=task_id)
+    task_obj = get_object_or_404(Task, id=task_id)
     if request.method == 'POST':
         task_obj.delete()
 

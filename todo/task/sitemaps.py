@@ -1,10 +1,10 @@
 
 from django.contrib.sitemaps import Sitemap
-from .models import task
+from .models import Task
 
 class TaskSitemap(Sitemap):
     changefreq = "weekly"
     priority = 0.8
 
     def items(self):
-        return task.objects.all()
+        return Task.objects.all()
